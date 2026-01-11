@@ -149,26 +149,38 @@ const MainSite: React.FC<MainSiteProps> = ({ isActive }) => {
         </div>
       </section>
 
-      {/* Resultados Reais */}
-      <section id="resultados" className="py-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16 space-y-4">
+      {/* Resultados Reais - Centralized Horizontal Scroll */}
+      <section id="resultados" className="py-24 bg-[#0a0a0a]">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12 space-y-2">
             <h2 className="text-4xl font-serif italic">Resultados Reais</h2>
-            <p className="text-neutral-500 text-sm max-w-md mx-auto">Técnicas avançadas para quem busca naturalidade e sofisticação em cada detalhe.</p>
+            <p className="text-neutral-500 text-sm">Arraste para o lado para ver a precisão de cada traço. <span className="text-emerald-500 font-bold ml-1">← deslize →</span></p>
           </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {GALLERY_RESULTS.map((img, i) => (
-              <div key={i} className="group relative aspect-square overflow-hidden rounded-2xl glass cursor-pointer">
-                <img src={img} alt={`Resultado ${i}`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <ExternalLink className="w-6 h-6 text-white" />
+        </div>
+        
+        <div className="flex md:justify-center items-center space-x-6 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-8 px-6 md:px-0">
+          {GALLERY_RESULTS.map((img, i) => (
+            <div 
+              key={i} 
+              className="min-w-[75vw] md:min-w-[320px] md:max-w-[320px] snap-center aspect-[3/4] overflow-hidden rounded-[2.5rem] glass relative group shrink-0 shadow-2xl border border-white/5 transition-transform duration-500 hover:z-10"
+            >
+              <img 
+                src={img} 
+                alt={`Resultado ${i}`} 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                <div className="flex items-center space-x-2">
+                  <ExternalLink className="w-5 h-5 text-emerald-500" />
+                  <span className="text-[10px] text-white font-bold uppercase tracking-widest">Ver Detalhes</span>
                 </div>
               </div>
-            ))}
-          </div>
-          
-          <p className="text-center mt-12 text-[10px] text-neutral-600 uppercase tracking-widest">* Resultados podem variar de pessoa para pessoa</p>
+            </div>
+          ))}
+        </div>
+        
+        <div className="max-w-6xl mx-auto px-6">
+          <p className="text-center mt-4 text-[10px] text-neutral-600 uppercase tracking-widest font-bold">* Cicatrização impecável garantida por protocolo exclusivo</p>
         </div>
       </section>
 
@@ -190,33 +202,44 @@ const MainSite: React.FC<MainSiteProps> = ({ isActive }) => {
         </div>
       </section>
 
-      {/* Fine Line de Coração */}
-      <section id="fineline" className="py-24 px-6 bg-[#0a0a0a]">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8">
-            <div className="space-y-4">
-              <h2 className="text-5xl font-serif italic">Fine Line • <br/> Micro Realismo de 💚</h2>
-              <p className="text-neutral-500">A delicadeza que sua pele merece.</p>
-            </div>
-            <a href={WHATSAPP_URL} className="text-sm font-bold uppercase tracking-widest text-emerald-500 flex items-center group">
-              QUERO MEU TRAÇO <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" />
-            </a>
+      {/* Fine Line de Coração - Centralized Horizontal Scroll */}
+      <section id="fineline" className="py-24 bg-[#0a0a0a]">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12 space-y-4">
+            <h2 className="text-5xl font-serif italic">Fine Line • <br/> Micro Realismo de 💚</h2>
+            <p className="text-neutral-500 text-sm">A delicadeza em cada pixel. <span className="text-emerald-500 font-bold ml-1">← deslize →</span></p>
           </div>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            {FINE_LINE_IMAGES.map((img, i) => (
-              <div key={i} className={`rounded-3xl overflow-hidden glass ${i === 0 ? 'md:col-span-2 md:row-span-2' : ''}`}>
-                 <img src={img} alt="Fine line work" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
-              </div>
-            ))}
-          </div>
+        <div className="flex md:justify-center items-center space-x-4 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-12 px-6 md:px-0">
+          {FINE_LINE_IMAGES.map((img, i) => (
+            <div 
+              key={i} 
+              className="min-w-[70vw] md:min-w-[280px] md:max-w-[280px] snap-center aspect-square rounded-[2rem] overflow-hidden glass relative group shrink-0 shadow-xl border border-white/5"
+            >
+               <img 
+                 src={img} 
+                 alt="Fine line work" 
+                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+               />
+               <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-md p-2 rounded-full border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity">
+                 <Heart className="w-4 h-4 text-emerald-500 fill-emerald-500" />
+               </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <a href={WHATSAPP_URL} className="inline-flex items-center text-xs font-bold uppercase tracking-[0.2em] text-emerald-500 group hover:text-white transition-colors">
+            QUERO MEU TRAÇO EXCLUSIVO <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" />
+          </a>
         </div>
       </section>
 
       {/* Comentários */}
       <section className="py-24 px-6 overflow-hidden">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-serif italic text-center mb-16 italic">O que dizem quem já foi <br/> cuidada por mim</h2>
+          <h2 className="text-4xl font-serif italic text-center mb-16">O que dizem quem já foi <br/> cuidada por mim</h2>
           <div className="flex space-x-6 overflow-x-auto no-scrollbar pb-12 snap-x">
             {COMMENTS_IMAGES.map((img, i) => (
               <div key={i} className="min-w-[300px] md:min-w-[400px] snap-center glass rounded-3xl overflow-hidden">
