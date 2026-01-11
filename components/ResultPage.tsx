@@ -9,11 +9,14 @@ interface ResultPageProps {
 }
 
 const ResultPage: React.FC<ResultPageProps> = ({ answers, onContinue }) => {
-  const handleWhatsAppResult = (withText: boolean) => {
+  const getWhatsAppLink = (withText: boolean) => {
     const text = withText 
       ? encodeURIComponent(`Olá Arcanjo! Fiz minha avaliação no site e meu perfil deu compatível. Minhas escolhas foram: ${answers.join(', ')}. Gostaria de saber detalhes sobre agendamento!`)
       : encodeURIComponent(`Olá Arcanjo! Vi seu site e gostaria de agendar uma consulta.`);
-    window.open(`${WHATSAPP_URL}&text=${text}`, '_blank');
+    
+    // Constrói o link usando ? ou & dependendo se a URL base já tem parâmetros
+    const separator = WHATSAPP_URL.includes('?') ? '&' : '?';
+    return `${WHATSAPP_URL}${separator}text=${text}`;
   };
 
   return (
@@ -57,22 +60,26 @@ const ResultPage: React.FC<ResultPageProps> = ({ answers, onContinue }) => {
         {/* Bloco de Botões Agrupados */}
         <div className="w-full space-y-2.5 pt-2">
           {/* 1- Enviar Avaliação */}
-          <button 
-            onClick={() => handleWhatsAppResult(true)}
+          <a 
+            href={getWhatsAppLink(true)}
+            target="_blank"
+            rel="noreferrer"
             className="w-full bg-emerald-500 text-white py-4 rounded-xl font-bold text-xs flex items-center justify-center space-x-2 shadow-lg shadow-emerald-500/20 active:scale-95 transition-transform animate-pulse"
           >
             <Send className="w-4 h-4" />
-            <span>1- ENVIAR MINHA AVALIAÇÃO AO DRA</span>
-          </button>
+            <span>1- ENVIAR MINHA AVALIAÇÃO</span>
+          </a>
 
           {/* 2- Chamar sem compromisso */}
-          <button 
-            onClick={() => handleWhatsAppResult(false)}
+          <a 
+            href={getWhatsAppLink(false)}
+            target="_blank"
+            rel="noreferrer"
             className="w-full glass text-white py-4 rounded-xl font-bold text-xs flex items-center justify-center space-x-2 active:scale-95 transition-transform border border-white/10"
           >
             <MessageSquare className="w-4 h-4" />
-            <span>2- CHAMAR NO WHATSAPP SEM COMPROMISSO</span>
-          </button>
+            <span>2- CHAMAR NO WHATSAPP</span>
+          </a>
 
           {/* 3- Continuar no Site */}
           <button 

@@ -149,7 +149,7 @@ const MainSite: React.FC<MainSiteProps> = ({ isActive }) => {
                   className="inline-flex w-full items-center justify-center bg-white text-black py-6 rounded-2xl font-bold text-lg hover:scale-[1.02] transition-transform shadow-xl shadow-white/5"
                 >
                   <Calendar className="w-5 h-5 mr-3" />
-                  AGENDAR CONSULTA GRATUITA
+                  CHAMAR NO WHATSSAP
                 </a>
                 <p className="text-[10px] text-neutral-500 uppercase tracking-widest font-bold">Sem compromisso via WhatsApp</p>
              </div>
@@ -284,7 +284,7 @@ const MainSite: React.FC<MainSiteProps> = ({ isActive }) => {
         </div>
 
         <div className="max-w-6xl mx-auto px-6 text-center">
-          <a href={WHATSAPP_URL} className="inline-flex items-center text-xs font-bold uppercase tracking-[0.2em] text-emerald-500 group hover:text-white transition-colors">
+          <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="inline-flex items-center text-xs font-bold uppercase tracking-[0.2em] text-emerald-500 group hover:text-white transition-colors">
             QUERO MEU TRAÇO EXCLUSIVO <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" />
           </a>
         </div>
@@ -355,11 +355,12 @@ const MainSite: React.FC<MainSiteProps> = ({ isActive }) => {
           <div className="space-y-6">
             <a 
               href={WHATSAPP_URL} 
+              target="_blank" 
+              rel="noreferrer"
               className="inline-flex w-full md:w-auto px-12 py-6 bg-black text-white rounded-2xl font-bold text-xl hover:scale-105 transition-transform"
             >
-              QUERO MINHA CONSULTA GRATUITA
+              CHAMAR NO WHATSSAP
             </a>
-            <p className="text-xs uppercase tracking-widest font-bold opacity-40">Primeira consulta sem compromisso</p>
           </div>
         </div>
       </section>
@@ -373,7 +374,7 @@ const MainSite: React.FC<MainSiteProps> = ({ isActive }) => {
         </div>
 
         <div className="flex justify-center space-x-6">
-          <a href={INSTAGRAM_URL} className="text-neutral-500 hover:text-white transition-colors">
+          <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className="text-neutral-500 hover:text-white transition-colors">
             <Instagram className="w-6 h-6" />
           </a>
         </div>

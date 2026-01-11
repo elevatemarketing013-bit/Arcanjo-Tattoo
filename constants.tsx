@@ -2,7 +2,7 @@
 export const EXPERT_NAME = "Arcanjo Tattoo";
 export const PROFESSION = "Fine Line • Micro Realismo";
 export const ADDRESS = "📍 Mauá - SP";
-export const WHATSAPP_URL = "https://api.whatsapp.com/send?phone=5511956374286";
+export const WHATSAPP_URL = "https://wa.me/5511956374286";
 export const INSTAGRAM_URL = "https://www.instagram.com/arcanjotattooz/";
 
 export const HERO_VIDEO = "https://i.imgur.com/hnku4eg.mp4";
