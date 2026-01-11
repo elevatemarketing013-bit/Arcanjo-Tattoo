@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { 
   EXPERT_NAME, 
   PROFESSION, 
@@ -22,7 +22,9 @@ import {
   Zap, 
   Calendar,
   ExternalLink,
-  Play
+  Play,
+  X,
+  Maximize2
 } from 'lucide-react';
 
 interface MainSiteProps {
@@ -30,6 +32,7 @@ interface MainSiteProps {
 }
 
 const MainSite: React.FC<MainSiteProps> = ({ isActive }) => {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scrollToSection = (id: string) => {
@@ -39,9 +42,50 @@ const MainSite: React.FC<MainSiteProps> = ({ isActive }) => {
     }
   };
 
+  // Previne scroll do body quando modal está aberto
+  useEffect(() => {
+    if (selectedImage) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedImage]);
+
   return (
     <div className={`w-full bg-[#0a0a0a] overflow-x-hidden ${isActive ? '' : 'pointer-events-none'}`}>
       
+      {/* Lightbox Modal Premium */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl animate-in fade-in duration-300"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button 
+            className="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors z-[110]"
+            onClick={() => setSelectedImage(null)}
+          >
+            <X className="w-6 h-6" />
+          </button>
+          
+          <div 
+            className="relative max-w-full max-h-[85vh] md:max-h-[90vh] flex items-center justify-center animate-in zoom-in-95 duration-300"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img 
+              src={selectedImage} 
+              alt="Ampliada" 
+              className="max-w-full max-h-full object-contain rounded-2xl shadow-2xl border border-white/10"
+            />
+            <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 whitespace-nowrap">
+               <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-emerald-500">Detalhe Premium • {EXPERT_NAME}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Logradouro (Marquee Nav) */}
       <nav className="sticky top-0 z-[60] glass border-b border-white/5 overflow-hidden">
         <div className="flex animate-[scroll_30s_linear_infinite] whitespace-nowrap py-3">
@@ -154,7 +198,7 @@ const MainSite: React.FC<MainSiteProps> = ({ isActive }) => {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12 space-y-2">
             <h2 className="text-4xl font-serif italic">Resultados Reais</h2>
-            <p className="text-neutral-500 text-sm">Arraste para o lado para ver a precisão de cada traço. <span className="text-emerald-500 font-bold ml-1">← deslize →</span></p>
+            <p className="text-neutral-500 text-sm">Toque na foto para ampliar e ver os detalhes. <span className="text-emerald-500 font-bold ml-1">← deslize →</span></p>
           </div>
         </div>
         
@@ -162,7 +206,8 @@ const MainSite: React.FC<MainSiteProps> = ({ isActive }) => {
           {GALLERY_RESULTS.map((img, i) => (
             <div 
               key={i} 
-              className="snap-center overflow-hidden rounded-xl glass relative group shrink-0 shadow-lg border border-white/5 transition-transform duration-500 hover:z-10"
+              onClick={() => setSelectedImage(img)}
+              className="snap-center overflow-hidden rounded-xl glass relative group shrink-0 shadow-lg border border-white/5 transition-transform duration-500 hover:z-10 cursor-zoom-in active:scale-95"
               style={{ 
                 width: '135px', 
                 aspectRatio: '758 / 815' 
@@ -173,11 +218,8 @@ const MainSite: React.FC<MainSiteProps> = ({ isActive }) => {
                 alt={`Resultado ${i}`} 
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-3">
-                <div className="flex items-center space-x-2">
-                  <ExternalLink className="w-2.5 h-2.5 text-emerald-500" />
-                  <span className="text-[6px] text-white font-bold uppercase tracking-widest">Ver</span>
-                </div>
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <Maximize2 className="w-5 h-5 text-white/70" />
               </div>
             </div>
           ))}
@@ -211,7 +253,7 @@ const MainSite: React.FC<MainSiteProps> = ({ isActive }) => {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12 space-y-4">
             <h2 className="text-5xl font-serif italic">Fine Line • <br/> Micro Realismo de 💚</h2>
-            <p className="text-neutral-500 text-sm">A delicadeza em cada pixel. <span className="text-emerald-500 font-bold ml-1">← deslize →</span></p>
+            <p className="text-neutral-500 text-sm">A delicadeza em cada pixel. Toque para ampliar. <span className="text-emerald-500 font-bold ml-1">← deslize →</span></p>
           </div>
         </div>
 
@@ -219,7 +261,8 @@ const MainSite: React.FC<MainSiteProps> = ({ isActive }) => {
           {FINE_LINE_IMAGES.map((img, i) => (
             <div 
               key={i} 
-              className="snap-center overflow-hidden rounded-xl glass relative group shrink-0 shadow-lg border border-white/5 transition-transform duration-500 hover:z-10"
+              onClick={() => setSelectedImage(img)}
+              className="snap-center overflow-hidden rounded-xl glass relative group shrink-0 shadow-lg border border-white/5 transition-transform duration-500 hover:z-10 cursor-zoom-in active:scale-95"
               style={{ 
                 width: '135px', 
                 aspectRatio: '758 / 815' 
@@ -230,7 +273,10 @@ const MainSite: React.FC<MainSiteProps> = ({ isActive }) => {
                  alt="Fine line work" 
                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
                />
-               <div className="absolute top-2 right-2 bg-black/40 backdrop-blur-md p-1 rounded-full border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity">
+               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                 <Maximize2 className="w-5 h-5 text-white/70" />
+               </div>
+               <div className="absolute top-2 right-2 bg-black/40 backdrop-blur-md p-1 rounded-full border border-white/10 opacity-60 group-hover:opacity-100 transition-opacity">
                  <Heart className="w-2.5 h-2.5 text-emerald-500 fill-emerald-500" />
                </div>
             </div>
