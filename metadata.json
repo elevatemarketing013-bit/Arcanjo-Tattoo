@@ -1,0 +1,8 @@
+{
+  "name": "Copy of Arcanjo Tattoo - Fine Line & Micro Realismo",
+  "description": "Uma experiência premium e exclusiva de tatuagem Fine Line e Micro Realismo em Mauá, focada em autoridade, confiança e resultados naturais.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
