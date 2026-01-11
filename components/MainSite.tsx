@@ -149,7 +149,7 @@ const MainSite: React.FC<MainSiteProps> = ({ isActive }) => {
         </div>
       </section>
 
-      {/* Resultados Reais - Centralized Horizontal Scroll */}
+      {/* Resultados Reais - Precise Proportions 758x815 & Compacted */}
       <section id="resultados" className="py-24 bg-[#0a0a0a]">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12 space-y-2">
@@ -158,21 +158,25 @@ const MainSite: React.FC<MainSiteProps> = ({ isActive }) => {
           </div>
         </div>
         
-        <div className="flex md:justify-center items-center space-x-6 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-8 px-6 md:px-0">
+        <div className="flex md:justify-center items-center space-x-3 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-8 px-6 md:px-0">
           {GALLERY_RESULTS.map((img, i) => (
             <div 
               key={i} 
-              className="min-w-[75vw] md:min-w-[320px] md:max-w-[320px] snap-center aspect-[3/4] overflow-hidden rounded-[2.5rem] glass relative group shrink-0 shadow-2xl border border-white/5 transition-transform duration-500 hover:z-10"
+              className="snap-center overflow-hidden rounded-xl glass relative group shrink-0 shadow-lg border border-white/5 transition-transform duration-500 hover:z-10"
+              style={{ 
+                width: '135px', 
+                aspectRatio: '758 / 815' 
+              }}
             >
               <img 
                 src={img} 
                 alt={`Resultado ${i}`} 
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-3">
                 <div className="flex items-center space-x-2">
-                  <ExternalLink className="w-5 h-5 text-emerald-500" />
-                  <span className="text-[10px] text-white font-bold uppercase tracking-widest">Ver Detalhes</span>
+                  <ExternalLink className="w-2.5 h-2.5 text-emerald-500" />
+                  <span className="text-[6px] text-white font-bold uppercase tracking-widest">Ver</span>
                 </div>
               </div>
             </div>
@@ -180,7 +184,7 @@ const MainSite: React.FC<MainSiteProps> = ({ isActive }) => {
         </div>
         
         <div className="max-w-6xl mx-auto px-6">
-          <p className="text-center mt-4 text-[10px] text-neutral-600 uppercase tracking-widest font-bold">* Cicatrização impecável garantida por protocolo exclusivo</p>
+          <p className="text-center mt-4 text-[9px] text-neutral-600 uppercase tracking-widest font-bold">* Cicatrização impecável garantida por protocolo exclusivo</p>
         </div>
       </section>
 
@@ -202,7 +206,7 @@ const MainSite: React.FC<MainSiteProps> = ({ isActive }) => {
         </div>
       </section>
 
-      {/* Fine Line de Coração - Centralized Horizontal Scroll */}
+      {/* Fine Line de Coração - Centralized & COMPACTED Horizontal Scroll with 758x815 Ratio */}
       <section id="fineline" className="py-24 bg-[#0a0a0a]">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12 space-y-4">
@@ -211,19 +215,23 @@ const MainSite: React.FC<MainSiteProps> = ({ isActive }) => {
           </div>
         </div>
 
-        <div className="flex md:justify-center items-center space-x-4 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-12 px-6 md:px-0">
+        <div className="flex md:justify-center items-center space-x-3 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-12 px-6 md:px-0">
           {FINE_LINE_IMAGES.map((img, i) => (
             <div 
               key={i} 
-              className="min-w-[70vw] md:min-w-[280px] md:max-w-[280px] snap-center aspect-square rounded-[2rem] overflow-hidden glass relative group shrink-0 shadow-xl border border-white/5"
+              className="snap-center overflow-hidden rounded-xl glass relative group shrink-0 shadow-lg border border-white/5 transition-transform duration-500 hover:z-10"
+              style={{ 
+                width: '135px', 
+                aspectRatio: '758 / 815' 
+              }}
             >
                <img 
                  src={img} 
                  alt="Fine line work" 
                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
                />
-               <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-md p-2 rounded-full border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity">
-                 <Heart className="w-4 h-4 text-emerald-500 fill-emerald-500" />
+               <div className="absolute top-2 right-2 bg-black/40 backdrop-blur-md p-1 rounded-full border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity">
+                 <Heart className="w-2.5 h-2.5 text-emerald-500 fill-emerald-500" />
                </div>
             </div>
           ))}
