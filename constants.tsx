@@ -61,22 +61,42 @@ export const COMMENTS_IMAGES = [
 export const QUIZ_QUESTIONS = [
   {
     id: 1,
-    text: "Qual seu principal objetivo com uma nova tatuagem?",
-    options: ["Tatuagem minimalista (Fine Line)", "Realismo ou Micro-realismo", "Cobertura ou Reforma", "Expressão de sentimentos únicos"]
+    text: "Qual estilo de traço mais combina com sua personalidade?",
+    options: [
+      "Fine Line: Delicadeza, fluidez e traços agulha.",
+      "Micro Realismo: Detalhes impressionantes em pequenos espaços.",
+      "Mix: O equilíbrio perfeito entre o fino e o detalhado.",
+      "Minimalista: Onde o 'menos' é definitivamente 'mais'."
+    ]
   },
   {
     id: 2,
-    text: "Você já possui tatuagens anteriores?",
-    options: ["Sim, várias", "Apenas uma", "Não, será minha primeira vez", "Sim, mas quero algo totalmente diferente"]
+    text: "O que você busca ao escolher um especialista nestas técnicas?",
+    options: [
+      "Precisão cirúrgica e traços que não 'estouram' com o tempo.",
+      "Um design exclusivo que conte minha história.",
+      "Atendimento privativo e biossegurança impecável.",
+      "Naturalidade e elegância acima de tudo."
+    ]
   },
   {
     id: 3,
-    text: "O que é mais importante para você em um artista?",
-    options: ["Traços finos e delicados", "Segurança e higiene impecável", "Um método exclusivo e personalizado", "Preço acessível"]
+    text: "Como você prefere que sua arte seja desenvolvida?",
+    options: [
+      "Quero uma criação 100% autoral do Arcanjo.",
+      "Tenho referências e quero uma adaptação premium.",
+      "Busco algo pequeno, mas com significado profundo.",
+      "Gostaria de uma consultoria técnica sobre o local ideal."
+    ]
   },
   {
     id: 4,
-    text: "Como você definiria seu estilo?",
-    options: ["Moderno e discreto", "Arrojado e detalhista", "Conectado com a natureza", "Em busca de transformação pessoal"]
+    text: "Qual sua principal expectativa em relação à sessão?",
+    options: [
+      "Foco total na perfeição do detalhe técnico.",
+      "Segurança absoluta em relação à cicatrização.",
+      "Uma experiência relaxante, exclusiva e sem pressa.",
+      "Um ambiente sofisticado, acolhedor e higiênico."
+    ]
   }
 ];
